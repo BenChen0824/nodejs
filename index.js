@@ -27,6 +27,15 @@ app.post('/cart', async (req, res) => {
     res.json({'db':rs,"session":true});
     
 })
+app.post('/login', async (req, res) => {
+    
+    const {email,password}=req.body;
+    const sql = 'SELECT * FROM `customer_data` WHERE email = ? AND mobile = ?';
+
+    const [rs]=await db.query(sql,[email,password]);
+    res.json({'db':rs,"session":true});
+    
+})
 app.get('/member', function (req, res) {
   res.send('Member')
 })
